@@ -1,11 +1,28 @@
+"use client";
+import { useEffect, useState } from "react";
 import React from "react";
 import { navLinks } from "../constant/constant";
 import Link from "next/link";
 import { MdDehaze } from "react-icons/md";
 
 const navbar = () => {
+  const [navBg, setNavBg] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 90) setNavBg(true);
+      if (window.scrollY < 90) setNavBg(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <div className="w-full transition-all duration-200 h-[12vh] z-[1000]">
+    // className={` fixed ${
+    //     navBg ? "bg-black shadow-md" : "fixed"
+    //   }w-full transition-all duration-200 h-[12vh] -z-[1000]`}
+    <div>
       <div className="flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto">
         {/* logo */}
         <h1 className="text-xl md:text-2xl font-extrabold">
